@@ -19,12 +19,16 @@ Mtmchkin::Mtmchkin(const char* playerName, const Card* cardsArray, int numOfCard
     return;
 }
 
+/* D'tor of Player class. */
+Mtmchkin::~Mtmchkin(){
+    delete[] this->cardsArray;
+}
+
 /* Play the next Card - according to the instruction in the exercise document
  * @return void. */
 void Mtmchkin::playNextCard(){
     this->cardsArray[this->currentCardIdx].printInfo();
     this->cardsArray[this->currentCardIdx].applyEncounter(this->player);
-    
     this->player.printInfo();
     this->currentCardIdx+=1;
     if (this->currentCardIdx == this->deckSize){
@@ -32,6 +36,9 @@ void Mtmchkin::playNextCard(){
     }
     if (this->player.getLevel() == MAX_LEVEL){
         this->status = GameStatus::Win;
+    }
+    if (this->player.isKnockedOut()){
+        this->status = GameStatus::Loss;
     }
     return;
 }

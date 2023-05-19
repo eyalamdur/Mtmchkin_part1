@@ -26,6 +26,16 @@ public:
      * @result An instance of Mtmchkin. */
     Mtmchkin(const char* playerName, const Card* cardsArray, int numOfCards);
 
+    /* D'tor of Player class. */
+    ~Mtmchkin();
+
+    /* Copy of Mtmchkin class.
+    * @param Mtmchkin& - reference to another Mtmchkin object.
+    * @return a new instance of Mtmchkin with copied values as the given Mtmchkin. */
+    Mtmchkin(const Mtmchkin&) = default;
+
+    /* Operator of Mtmchkin class.*/
+    Mtmchkin& operator=(const Mtmchkin& other) = default;
 
     /* Play the next Card - according to the instruction in the exercise document
      * @return void. */

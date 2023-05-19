@@ -1,7 +1,7 @@
 #include "Card.h"
 #include <iostream>
 
-#define FAILURE NULL
+const int MINIMUM_VALUE = 0;
 
 // Functions decleration
 bool applyBattleEncounter(Player& player, int cardForce, int cardLoot, int cardHpLossOnDefeat);
@@ -91,9 +91,9 @@ bool applyBattleEncounter(Player& player, int cardForce, int cardLoot, int cardH
  * @param cardValue - The card force points to add to player.
  * @return void. */
 void applyBuffEncounter(Player& player, int cardCost, int cardValue){
-    if (player.pay(cardCost)){
-        player.buff(cardValue);
-    }
+        if (player.pay(cardCost)){
+            player.buff(cardValue);
+        }
     return;
 }
 
@@ -103,9 +103,9 @@ void applyBuffEncounter(Player& player, int cardCost, int cardValue){
  * @param cardValue - The card heal points to add to player.
  * @return void. */
 void applyHealEncounter(Player& player, int cardCost, int cardValue){
-    if (player.pay(cardCost)){
-        player.heal(cardValue);
-    }
+        if (player.pay(cardCost)){
+            player.heal(cardValue);
+        }
     return;
 }
 

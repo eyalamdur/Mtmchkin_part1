@@ -42,7 +42,7 @@ do
 		printf "Game Simulation: ${RED}fail${NC},   "
 		FAILED_TESTS+=1
 	fi
-	valgrind --log-file=$i.valgrind_log --leak-check=full ./FileTester $i ${i%.*}.vresult 1>/dev/null 2>/dev/null
+	valgrind --log-file=$i.valgrind_log --leak-check=full --show-leak-kinds=all --track-origins=yes ./FileTester $i ${i%.*}.vresult 1>/dev/null 2>/dev/null
 	rm ${i%.*}.vresult
 	if [ -f $i.valgrind_log ]
 	then

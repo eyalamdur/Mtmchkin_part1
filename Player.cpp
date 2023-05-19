@@ -18,7 +18,7 @@ Player::Player(std::string name, const int maxHP, const int force){
     if (force < MINIMUM_VALUE){
         this->m_force = DEFAULT_FORCE;
     }
-    if (maxHP < MINIMUM_VALUE){
+    if (maxHP < MINIMUM_VALUE + 1){
         this->m_maxHP = DEFAULT_MAX_HP;
     }
 
@@ -68,7 +68,7 @@ int Player::getLevel() const{
 /* Raise the player force by given ammount
  * If player level is 10 does nothing. */
 void Player::buff(int forcePoints){
-    if (forcePoints > MINIMUM_VALUE){
+    if (forcePoints >= MINIMUM_VALUE){
         this->m_force += forcePoints;
     }
     return;
@@ -78,7 +78,7 @@ void Player::buff(int forcePoints){
  * @param healthPoints - The intented health points to give to the player.
  * If player has full HP or gets invalid param - nothing changed. */
 void Player::heal(int healthPoints){
-    if (healthPoints > MINIMUM_VALUE){
+    if (healthPoints >= MINIMUM_VALUE){
         if (healthPoints + this->m_hp < this->m_maxHP){
             this->m_hp += healthPoints;
         }
@@ -93,7 +93,7 @@ void Player::heal(int healthPoints){
  * @param healthPoints - The intented health points to decrese from the player.
  * If given healthPoints is bigger than player current HP reduce current HP to 0. */
 void Player::damage(int healthPoints){
-    if (healthPoints > MINIMUM_VALUE){
+    if (healthPoints >= MINIMUM_VALUE){
         if (this->m_hp - healthPoints >= MINIMUM_VALUE){
             this->m_hp -= healthPoints;
         }
@@ -116,7 +116,7 @@ bool Player::isKnockedOut(){
 /* Increase the player coins by given ammount.
  * @param coins - The intented coins points to add to the player. */
 void Player::addCoins(int coins){
-    if (coins > MINIMUM_VALUE){
+    if (coins >= MINIMUM_VALUE){
         this->m_coins += coins;
     }
     return;
@@ -128,6 +128,9 @@ void Player::addCoins(int coins){
  * @param coins - The intented coins points to decrease from the player.
  * @return true if payment succeeded and false if otherwise.  */
 bool Player::pay(int coins){
+    if (coins <= MINIMUM_VALUE){
+        return true;
+    }
     if (this->m_coins >= coins){
         this->m_coins -= coins;
         return true;
